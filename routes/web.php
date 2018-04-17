@@ -17,6 +17,15 @@ Route::get('/', function () {
 
 Route::resource('cars', 'CarController');
 
-Route::get('/home', function () {
-    echo 'Welcome home!';
+Route::get('/houm', function () {
+    echo 'Welcome houm!';
+})->middleware('my-home');
+
+Route::get('/short-name', function () {
+    echo 'Your name is shorter than 5 characters!';
+    echo 'Therefore, You cannot go houm..';
 });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('houm');
