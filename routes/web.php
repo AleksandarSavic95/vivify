@@ -16,3 +16,7 @@ Route::get('/', function () {
 });
 
 Route::resource('cars', 'CarController');
+
+Route::get('/home', function () {
+    echo 'Welcome home!';
+});
