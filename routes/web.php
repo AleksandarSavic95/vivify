@@ -17,15 +17,20 @@ Route::get('/', function () {
 
 Route::resource('cars', 'CarController');
 
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('houm');
+
+// simple middleware
 Route::get('/houm', function () {
     echo 'Welcome houm!';
 })->middleware('my-home');
 
+// simple middleware's redirect route
 Route::get('/short-name', function () {
     echo 'Your name is shorter than 5 characters!';
     echo 'Therefore, You cannot go houm..';
 });
 
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('houm');
+// new action and a new template for it -- show all cars from the DB
+Route::get('cars', 'CarController@allCars');
