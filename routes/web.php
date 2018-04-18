@@ -34,3 +34,8 @@ Route::get('/short-name', function () {
 
 // new action and a new template for it -- show all cars from the DB
 Route::get('cars', 'CarController@allCars');
+
+// used this for inserting new rows directly into the Users table
+Route::get('/hash', function () {
+    echo Hash::make('aleksandar');
+});
