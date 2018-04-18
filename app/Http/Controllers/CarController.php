@@ -40,6 +40,15 @@ class CarController extends Controller
     }
 
     /**
+     * Display all cars in the database.
+     * Result is limited to 20 rows.
+     */
+    public function allCars() {
+        $cars = Car::limit(20)->get();
+        return view('cars.list', array('cars' => $cars));
+    }
+
+    /**
      * Display the specified resource.
      *
      * @param  int  $id
