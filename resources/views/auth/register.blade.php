@@ -80,10 +80,10 @@
 
                             <div class="col-md-6">
                                 <select id="country" class="form-control{{ $errors->has('country') ? ' is-invalid' : '' }}" name="country" value="{{ old('country') }}" required>
-                                    <option>Serbia</option>
-                                    <option>Croatia</option>
-                                    <option>Bosnia &amp; Herzegovina</option>
-                                    <option>Montenegro</option>
+                                    @foreach (App\Country::all() as $country)
+                                        <option> {{ $country->name }} </option>
+                                    @endforeach
+                                    <option>Kambodza-invalid</option>
                                 </select>
                                 @if ($errors->has('country'))
                                     <span class="invalid-feedback">
