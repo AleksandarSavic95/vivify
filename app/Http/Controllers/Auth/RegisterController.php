@@ -7,6 +7,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rule;
 
 class RegisterController extends Controller
 {
@@ -31,6 +33,13 @@ class RegisterController extends Controller
     protected $redirectTo = '/home';
 
     /**
+     * This may have a better location than this one,
+     * like a new (dedicated) or an existing class,
+     * but I have no idea where that might be.
+     */
+    public $countryList;
+
+    /**
      * Create a new controller instance.
      *
      * @return void
@@ -38,6 +47,7 @@ class RegisterController extends Controller
     public function __construct()
     {
         $this->middleware('guest');
+        $this->countryList = array('Serbia', 'Croatia', 'Bosnia & Herzegovina', 'Montenegro');
     }
 
     /**
@@ -49,9 +59,18 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => 'required|string|max:255',
+            'first_name' => 'required|string|max:255',
+            'last_name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
+            'country' => [
+                'required','string',
+                Rule::in( $this->countryList ),
+                'max:100'
+            ],
+            // this approach is also valid: ( implode($glue, $arrayOfPieces) )
+            // 'country' => 'required|string|max:100|in:'. implode(',', $this->countryList),
+            'company' => 'required|string|max:45',
         ]);
     }
 
