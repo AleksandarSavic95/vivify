@@ -32,6 +32,8 @@ class RegisterController extends Controller
      */
     protected $redirectTo = '/home';
 
+    public $countryList;
+
     /**
      * This may have a better location than this one,
      * like a new (dedicated) or an existing class,
