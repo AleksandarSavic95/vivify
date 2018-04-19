@@ -32,15 +32,6 @@ class RegisterController extends Controller
      */
     protected $redirectTo = '/home';
 
-    public $countryList;
-
-    /**
-     * This may have a better location than this one,
-     * like a new (dedicated) or an existing class,
-     * but I have no idea where that might be.
-     */
-    public $countryList;
-
     /**
      * Create a new controller instance.
      *
@@ -49,7 +40,6 @@ class RegisterController extends Controller
     public function __construct()
     {
         $this->middleware('guest');
-        $this->countryList = array('Serbia', 'Croatia', 'Bosnia & Herzegovina', 'Montenegro');
     }
 
     /**
@@ -67,7 +57,7 @@ class RegisterController extends Controller
             'password' => 'required|string|min:6|confirmed',
             'country' => [
                 'required','string',
-                Rule::in( $this->countryList ),
+                'exists:countries,name',
                 'max:100'
             ],
             // this approach is also valid: ( implode($glue, $arrayOfPieces) )
@@ -84,6 +74,9 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        // poziv validatora!
+
+
         return User::create([
             'first_name' => $data['first_name'],
             'last_name' => $data['last_name'],
