@@ -20,6 +20,9 @@
     <script src="{{ asset('js/task12/objects.js') }}" defer></script>
     <script src="{{ asset('js/task12/person.js') }}" defer></script>
 
+    <!-- <script src="{{ asset('js/task13-zdravstvena/test.js') }}" defer></script> -->
+    <script src="{{ asset('js/task13-zdravstvena/bundle.js') }}" defer></script>
+
     <!-- Fonts -->
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,600" rel="stylesheet" type="text/css">
