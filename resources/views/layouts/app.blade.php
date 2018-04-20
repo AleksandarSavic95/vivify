@@ -12,6 +12,9 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="{{ asset('js/b4Task11.js') }}" defer></script>
+    <script src="{{ asset('js/task11.js') }}" defer></script>
+    <script src="{{ asset('js/afterTask11.js') }}" defer></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
@@ -28,6 +31,16 @@
         <main class="py-4">
             @yield('content')
         </main>
+        <script defer="defer">
+            var script = 'script';
+            console.log('~~~ script ~~~');
+            // console.log(b4); // ReferenceError
+            // console.log(anon); // ReferenceError
+            // console.log(after); // ReferenceError
+            // console.log(out); // ReferenceError
+            console.log(script);
+            console.log('~~~ /script ~~~');
+        </script>
     </div>
     @include('layouts.footer')
 </body>
