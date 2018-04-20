@@ -12,9 +12,13 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
-    <script src="{{ asset('js/b4Task11.js') }}" defer></script>
-    <script src="{{ asset('js/task11.js') }}" defer></script>
-    <script src="{{ asset('js/afterTask11.js') }}" defer></script>
+    
+    <script src="{{ asset('js/task11/b4Task11.js') }}" defer></script>
+    <script src="{{ asset('js/task11/task11.js') }}" defer></script>
+    <script src="{{ asset('js/task11/afterTask11.js') }}" defer></script>
+
+    <script src="{{ asset('js/task12/objects.js') }}" defer></script>
+    <script src="{{ asset('js/task12/person.js') }}" defer></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
