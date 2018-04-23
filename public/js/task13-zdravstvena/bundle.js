@@ -1,14 +1,36 @@
 class Util {
-    /*
-    * Datum i vrijeme u formatu dd.mm.yyyy. hh:mm:ss
-    */
+    /** DATES **/
+
+    /* Datum i vrijeme u formatu dd.mm.yyyy. hh:mm:ss */
     static getDateTimeString() {
-        let d = new Date(); // current date and time
-        let time = d.toTimeString().split(' ')[0]; // hh:mm:ss
-        let day = d.getDate(); // day
-        let month = d.getMonth() + 1; // month - january = 0
-        let year = d.getFullYear();
-        return '[' + day + '.' + month + '.' + year + '. ' + time + '] ';
+        return `[${moment().format("DD.MM.YYYY HH:mm")}] `;
+    }
+
+    /* Random datum izmedju dva dana */
+    static randomDate(start, end) {
+        return moment(start.getTime() + Math.random() * (end.getTime() - start.getTime()));
+    }
+
+    static log(message) {
+        console.log(Util.getDateTimeString() + message);
+    }
+
+    /** INTS **/
+    
+    static getRandomIntIn(min, max) {
+        if (min >= max) {
+            return 42; // the Answer :)
+        }
+        return Math.floor(Math.random() * (max - min) + min);
+    }
+
+    /** FLOATS **/
+
+    static getRandomFloatIn(min, max) {
+        if (min >= max) {
+            return 42; // the Answer :)
+        }
+        return Math.random() * (max - min) + min;
     }
 }
 
@@ -23,7 +45,12 @@ class Doktor extends Osoba {
     constructor (ime, prezime, specijalnost) {
         super(ime, prezime);
         this.specijalnost = specijalnost;
-        console.log(Util.getDateTimeString() + `doktor ${ime} kreiran`);
+        this.pacijenti = [];
+        Util.log(`doktor ${ime} kreiran`);
+    }
+
+    dodajPacijenta(pacijent) {
+        this.pacijenti.push(pacijent);
     }
 
     /*
@@ -41,24 +68,22 @@ class Pacijent extends Osoba {
         this.brKartona = brKartona;
         this.jmbg = jmbg;
         this.doktor = doktor;
-        console.log(Util.getDateTimeString() +
-            `Pacijent ${ime} kreiran`);
+        Util.log(`Pacijent ${ime} kreiran`);
     }
 
     odaberiDoktora(doktor) {
         this.doktor = doktor;
-        console.log(Util.getDateTimeString() +
-            `Pacijent ${this.ime} bira doktora ${doktor.ime}`);
+        this.doktor.dodajPacijenta(this);
+        Util.log(`Pacijent ${this.ime} bira doktora ${doktor.ime}`);
     }
 
     obaviPregled(pregled) {
-        console.log(Util.getDateTimeString() +
-            `Pacijent ${this.ime} obavlja pregled ${pregled.tip()}`);
+        Util.log(`Pacijent ${this.ime} obavlja pregled ${pregled.tip()}`);
         
-        if (pregled.pacijent == this.brKartona) {
+        if (pregled.pacijent == this) {
             pregled.popuniIzvjestaj();
         } else {
-            console.log('Pacijent radi tudji pregled!');
+            Util.log('Pacijent radi tudji pregled!');
         }
     }
 }
@@ -74,7 +99,7 @@ class Pregled {
     * Odredjuje pacijenta za kog je vezana konkretna instanca.
     */
     postaviPacijenta(pacijent) {
-        this.pacijent = pacijent.brKartona;
+        this.pacijent = pacijent;
     }
 
     // 'abstract' method
@@ -93,9 +118,10 @@ class Holesterol extends Pregled {
         super(datum, vrijeme);
     }
 
+    // note: moje znanje iz medicine i nije tako sjajno :)
     popuniIzvjestaj() {
-        this.vrijednost = 2.6;
-        this.vrijemeObroka = '14:30';
+        this.vrijednost = Util.getRandomFloatIn(2, 10);
+        this.vrijemeObroka = Util.randomDate(new Date(2012, 0, 1), new Date());
     }
 
     tip() {
@@ -103,8 +129,8 @@ class Holesterol extends Pregled {
     }
 
     toString() {
-        return 'Nivo holesterola: ' + this.vrijednost +
-            '\nVrijeme posljednjeg obroka: ' + this.vrijemeObroka;
+        return `Nivo holesterola: ${this.vrijednost}\n`+
+            `Vrijeme posljednjeg obroka: ${this.vrijemeObroka.format()}`;
     }
 }
 
@@ -113,10 +139,11 @@ class Pritisak extends Pregled {
         super(datum, vrijeme);
     }
 
+    // note: moje znanje iz medicine i nije tako sjajno :)
     popuniIzvjestaj() {
-        this.donja = 84;
-        this.gornja = 120;
-        this.puls = 100;
+        this.donja = Util.getRandomIntIn(50, 100);
+        this.gornja = Util.getRandomIntIn(70, 140);
+        this.puls = Util.getRandomIntIn(50, 160);
     }
 
     tip() {
@@ -124,8 +151,7 @@ class Pritisak extends Pregled {
     }
 
     toString() {
-        return 'Pritisak: ' + this.donja + ' sa ' + this.gornja +
-            '\nPuls: ' + this.puls;
+        return `Pritisak: ${this.donja} sa ${this.gornja}\nPuls ${this.puls}`;
     }
 }
 
@@ -135,8 +161,8 @@ class Secer extends Pregled {
     }
 
     popuniIzvjestaj() {
-        this.vrijednost = 4.2;
-        this.vrijemeObroka = '11:30';
+        this.vrijednost = Util.getRandomFloatIn(1, 9);
+        this.vrijemeObroka = Util.randomDate(new Date(2012, 0, 1), new Date());
     }
 
     tip() {
@@ -144,8 +170,8 @@ class Secer extends Pregled {
     }
 
     toString() {
-        return 'Nivo secera: ' + this.vrijednost +
-            '\nVrijeme posljednjeg obroka: ' + this.vrijemeObroka;
+        return `Nivo secera: ${this.vrijednost}\n`+
+            `Vrijeme posljednjeg obroka: ${this.vrijemeObroka.format()}`;
     }
 }
 
@@ -163,4 +189,10 @@ doktor.zakaziPregled(pritisak, pacijent);
 pacijent.obaviPregled(secer);
 pacijent.obaviPregled(pritisak);
 
-console.log('END');
+console.log(Util.getRandomIntIn(10,20));
+console.log(Util.getRandomIntIn(10,20));
+console.log(Util.getRandomIntIn(10,20));
+
+console.log(Util.getRandomFloatIn(10,20));
+console.log(Util.getRandomFloatIn(10,20));
+console.log(Util.getRandomFloatIn(10,20));
