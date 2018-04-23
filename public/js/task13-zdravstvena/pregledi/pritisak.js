@@ -11,6 +11,10 @@ class Pritisak extends Pregled {
         this.puls = 100;
     }
 
+    tip() {
+        return "Pritisak";
+    }
+
     toString() {
         return 'Pritisak: ' + this.donja + ' sa ' + this.gornja +
             '\nPuls: ' + this.puls;

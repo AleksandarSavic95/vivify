@@ -5,5 +5,13 @@ class Doktor extends Osoba {
         super(ime, prezime);
         this.specijalnost = specijalnost;
     }
+
+    /*
+    * Vezivanje pregleda za konkretnog pacijenta.
+    * Nisam se mogao sjetiti bolje semantike ovog koraka .. :)
+    */
+    zakaziPregled(pregled, pacijent) {
+        pregled.postaviPacijenta(pacijent);
+    }
 }
 export default Doktor;

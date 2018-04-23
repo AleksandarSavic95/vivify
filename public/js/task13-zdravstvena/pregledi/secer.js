@@ -10,6 +10,10 @@ class Secer extends Pregled {
         this.vrijemeObroka = "11:30";
     }
 
+    tip() {
+        return "Secer";
+    }
+
     toString() {
         return 'Nivo secera: ' + this.vrijednost +
             '\nVrijeme posljednjeg obroka: ' + this.vrijemeObroka;

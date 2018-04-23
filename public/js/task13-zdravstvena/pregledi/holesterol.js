@@ -10,6 +10,10 @@ class Holesterol extends Pregled {
         this.vrijemeObroka = "14:30";
     }
 
+    tip() {
+        return "Holesterol";
+    }
+
     toString() {
         return 'Nivo holesterola: ' + this.vrijednost +
             '\nVrijeme posljednjeg obroka: ' + this.vrijemeObroka;

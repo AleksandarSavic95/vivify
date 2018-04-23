@@ -11,12 +11,12 @@ import Secer from './pregledi/secer';
  - pacijent “Dragan” obavlja laboratorijski pregled za merenje nivoa šećera u krvi. Simulirati i prikazati rezultate.
  - pacijent “Dragan” obavlja laboratorijski pregled za merenje krvnog pritiska. Simulirati i prikazati rezultate.
 */
-var doktor = new Doktor("Milan", "Milanovic", "Opsta praksa");
-var pacijent = new Pacijent("Dragan", "Draganic", "1212123121212", "K-35");
+let doktor = new Doktor("Milan", "Milanovic", "Opsta praksa");
+let pacijent = new Pacijent("Dragan", "Draganic", "1212123121212", "K-35");
 pacijent.odaberiDoktora(doktor);
 
-var secer = new Secer('25-5-2018', '10:00');
-var pritisak = new Pritisak('25-5-2018', '11:00');
+let secer = new Secer('25-5-2018', '10:00');
+let pritisak = new Pritisak('25-5-2018', '11:00');
 
 doktor.zakaziPregled(secer, pacijent);
 doktor.zakaziPregled(pritisak, pacijent);
@@ -24,4 +24,4 @@ doktor.zakaziPregled(pritisak, pacijent);
 pacijent.obaviPregled(secer);
 pacijent.obaviPregled(pritisak);
 
-console.log('asd');
+console.log('END');

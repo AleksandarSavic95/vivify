@@ -1,4 +1,5 @@
 import Osoba from "./osoba";
+import Util from "../util";
 
 class Pacijent extends Osoba {
     constructor(ime, prezime, jmbg, brKartona, doktor = null) {
@@ -10,12 +11,19 @@ class Pacijent extends Osoba {
 
     odaberiDoktora(doktor) {
         this.doktor = doktor;
+        console.log(Util.getDateTimeString() +
+            `Pacijent ${this.ime} bira doktora ${doktor.ime}`);
     }
 
     obaviPregled(pregled) {
-        console.log('Pacijent ' + this.ime +
-            ' obavlja pregled ' + pregled);
-        pregled.popuniIzvjestaj();
+        console.log(Util.getDateTimeString() +
+            `Pacijent ${this.ime} obavlja pregled ${pregled.tip()}`);
+        
+        if (pregled.pacijent == this.brKartona) {
+            pregled.popuniIzvjestaj();
+        } else {
+            console.log('Pacijent radi tudji pregled!');
+        }
     }
 }
 
