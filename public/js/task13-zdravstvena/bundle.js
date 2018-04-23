@@ -4,11 +4,11 @@ class Util {
     */
     static getDateTimeString() {
         let d = new Date(); // current date and time
-        let time = d.toTimeString().split(" ")[0]; // hh:mm:ss
+        let time = d.toTimeString().split(' ')[0]; // hh:mm:ss
         let day = d.getDate(); // day
         let month = d.getMonth() + 1; // month - january = 0
         let year = d.getFullYear();
-        return "[" + day + "." + month + "." + year + ". " + time + "] ";
+        return '[' + day + '.' + month + '.' + year + '. ' + time + '] ';
     }
 }
 
@@ -77,13 +77,13 @@ class Pregled {
         this.pacijent = pacijent.brKartona;
     }
 
-    // "abstract" method
+    // 'abstract' method
     popuniIzvjestaj() {
-        throw new Error("'popuniIzvjestaj' not implemented!");
+        throw new Error('\'popuniIzvjestaj\' not implemented!');
     }
 
     tip() {
-        throw new Error("'tip' not implemented!");
+        throw new Error('\'tip\' not implemented!');
     }
 
 }
@@ -95,11 +95,11 @@ class Holesterol extends Pregled {
 
     popuniIzvjestaj() {
         this.vrijednost = 2.6;
-        this.vrijemeObroka = "14:30";
+        this.vrijemeObroka = '14:30';
     }
 
     tip() {
-        return "Holesterol";
+        return 'Holesterol';
     }
 
     toString() {
@@ -120,7 +120,7 @@ class Pritisak extends Pregled {
     }
 
     tip() {
-        return "Pritisak";
+        return 'Pritisak';
     }
 
     toString() {
@@ -136,11 +136,11 @@ class Secer extends Pregled {
 
     popuniIzvjestaj() {
         this.vrijednost = 4.2;
-        this.vrijemeObroka = "11:30";
+        this.vrijemeObroka = '11:30';
     }
 
     tip() {
-        return "Secer";
+        return 'Secer';
     }
 
     toString() {
@@ -150,8 +150,8 @@ class Secer extends Pregled {
 }
 
 ///// TEST /////
-let doktor = new Doktor("Milan", "Milanovic", "Opsta praksa");
-let pacijent = new Pacijent("Dragan", "Draganic", "1212123121212", "K-35");
+let doktor = new Doktor('Milan', 'Milanovic', 'Opsta praksa');
+let pacijent = new Pacijent('Dragan', 'Draganic', '1212123121212', 'K-35');
 pacijent.odaberiDoktora(doktor);
 
 let secer = new Secer('25-5-2018', '10:00');

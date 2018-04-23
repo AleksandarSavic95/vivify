@@ -32,8 +32,8 @@ Route::get('/short-name', function () {
     echo 'Therefore, You cannot go houm..';
 });
 
-// new action and a new template for it -- show all cars from the DB
-Route::get('cars', 'CarController@allCars');
+// new action and a new template for it -- show first 10 cars from the DB
+Route::get('cars', 'CarController@get10Cars');
 
 // used this for inserting new rows directly into the Users table
 Route::get('/hash', function () {

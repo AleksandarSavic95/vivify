@@ -41,10 +41,10 @@ class CarController extends Controller
 
     /**
      * Display all cars in the database.
-     * Result is limited to 20 rows.
+     * Result is limited to 10 rows.
      */
-    public function allCars() {
-        $cars = Car::limit(20)->get();
+    public function get10Cars() {
+        $cars = Car::limit(10)->get();
         return view('cars.list', array('cars' => $cars));
     }
 
