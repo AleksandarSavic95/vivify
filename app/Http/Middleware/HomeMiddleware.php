@@ -26,9 +26,7 @@ class HomeMiddleware
                 \Log::info('\nlogging from HomeMiddleware\n');
                 return $next($request);
             }
-            else {
-                return redirect('/short-name');
-            }
+            return redirect('/short-name');
         }
         return redirect('/home');
     }

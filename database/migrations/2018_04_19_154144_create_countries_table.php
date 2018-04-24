@@ -22,9 +22,7 @@ class CreateCountriesTable extends Migration
         $countryList = array('Serbia', 'Croatia', 'Bosnia & Herzegovina', 'Montenegro');
 
         foreach ($countryList as $country) {
-            DB::table('countries')->insert(
-                array('name' => $country)
-                );
+            DB::table('countries')->insert(array('name' => $country));
         }
     }
 

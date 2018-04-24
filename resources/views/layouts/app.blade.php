@@ -12,6 +12,8 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.1/moment.min.js"></script>
     
     <script src="{{ asset('js/task11/b4Task11.js') }}" defer></script>
     <script src="{{ asset('js/task11/task11.js') }}" defer></script>
